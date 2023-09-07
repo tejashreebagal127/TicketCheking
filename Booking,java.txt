@@ -1,0 +1,59 @@
+package com.booking;
+import java.util.Scanner;
+
+public class Booking {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		Teater teater = new Teater("INOX",500);
+		boolean flag=true;
+		
+		while(flag) {
+			System.out.println("Enter \n 1. Show Seats availability \n 2. Book Tickets \n 3. To check Details \n 4. Cancel Ticket \n 5. Exit" );
+			int n= sc.nextInt();
+			switch(n) {
+			
+			case 1 : {
+				int number_of_seats= teater.getNo_of_seats();
+				System.out.println(number_of_seats+ " seats are available");
+			}break;
+			
+			case 2 : {
+				System.out.println("Enter a movie name");
+				String name= sc.next();
+				System.out.println("Enter Number of seats to book");
+				int num = sc.nextInt();
+				teater.setTicket(new Ticket(name ,num));
+				int res= teater.printBookTicket();
+				System.out.println(res +" tickets are booked successfully");
+			}break;
+			
+			case 3 : {
+				System.out.println("======Ticket Details======");
+				Ticket t= teater.getTicket();
+				System.out.println("Movie Name:- " + t.getMovie_name());
+				System.out.println("Booked Tickets:- " + t.getNo_of_ticket());
+			}break;
+			
+			case 4 : {
+				System.out.println("Enter number of tickets to be cancelled");
+				int cancel= sc.nextInt();
+				teater.cancelTicket(cancel);
+				
+			}break;
+			
+			case 5 : {
+				System.out.println("======Thank You======");
+				flag=false;
+			}break;
+			
+			default : {
+				System.out.println("Wrong Input");
+			}break;
+			}
+		}
+		
+
+	}
+
+}
